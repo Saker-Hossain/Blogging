@@ -16,7 +16,7 @@
 
                         <div class="dashboard">
                             <ul>
-                                <li><a href="#" class="">A second link item</a></li>
+                                <li><a href="{{ route('blog.create') }}" class="">Create Post</a></li>
                                 <li><a href="#" class="">A third link item</a></li>
                                 <li><a href="#" class="">A fourth link item</a></li>
                             </ul>
