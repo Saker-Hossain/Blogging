@@ -11,11 +11,17 @@ class BlogController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except(['index', 'show']);
     }
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::latest()->get();
+        if ($request->search) {
+            $posts = Post::where('title', 'like', '%' . $request->search . '%')
+            ->orWhere('body', 'like', '%' . $request->search . '%')->latest()->paginate(4);
+        }else {
+            $posts = Post::latest()->paginate(4);
+        }
+
         return view('blogPost.blog', compact('posts'));
     }
 
@@ -54,7 +60,7 @@ class BlogController extends Controller
 
     public function edit(Post $post)
     {
-        if(auth()->user()->id !== $post->user()->id)
+        if(auth()->user()->id !== $post->user->id)
         {
             abort(403);
         }
@@ -63,7 +69,7 @@ class BlogController extends Controller
 
     public function update(Request $request, Post $post)
     {
-        if(auth()->user()->id !== $post->user()->id)
+        if(auth()->user()->id !== $post->user->id)
         {
             abort(403);
         }
@@ -96,7 +102,7 @@ class BlogController extends Controller
         return view('blogPost.single-blog-post', compact('post'));
     }
 
-    public function delete(Post $post)
+    public function destroy(Post $post)
     {
         $post->delete();
         return redirect()->back()->with('status', "Post Deleted successfully.");

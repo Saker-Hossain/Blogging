@@ -4,6 +4,11 @@
     <!-- main -->
     <main class="container">
         <h2 class="header-title">All Blog Posts</h2>
+        @if (session('status'))
+                <p
+                    style="color: #fff; width:100%; font-size:18px;font-weight:600;text-align:center; background: #5cb85c; padding: 17px 0; margin-bottom:6px;">
+                    {{ session('status') }}</p>
+            @endif
         <div class="searchbar">
             <form action="">
                 <input type="text" placeholder="Search..." name="search" />
@@ -23,13 +28,13 @@
             </ul>
         </div>
         <section class="cards-blog latest-blog">
-            @foreach ($posts as $post)
+            @forelse ($posts as $post)
                 <div class="card-blog-content">
                     @auth
-                        @if (auth()->user()->id === $post->user()->id)
+                        @if (auth()->user()->id === $post->user->id)
                             <div class="post-buttons">
                                 <a href="{{ Route('blog.edit', $post) }}">Edit</a>
-                                <form action="{{ route('blog.delete', $post) }}" method="POST">
+                                <form action="{{ route('blog.destroy', $post) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <input type="submit" value=" Delete">
@@ -46,12 +51,14 @@
                         <a href="{{ Route('blog.show', $post) }}">{{ $post->title }}</a>
                     </h4>
                 </div>
-            @endforeach
+                @empty
+                <p>Sorry, currently there is no blog post related to that search.</p>
+            @endforelse
 
 
         </section>
         <!-- pagination -->
-        <div class="pagination" id="pagination">
+        {{-- <div class="pagination" id="pagination">
             <a href="">&laquo;</a>
             <a class="active" href="">1</a>
             <a href="">2</a>
@@ -59,7 +66,8 @@
             <a href="">4</a>
             <a href="">5</a>
             <a href="">&raquo;</a>
-        </div>
+        </div> --}}
+        {{ $posts->links('pagination::default') }}
         <br>
         <!-- Main footer -->
         {{-- <footer class="main-footer">

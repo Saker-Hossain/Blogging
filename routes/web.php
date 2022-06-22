@@ -40,7 +40,7 @@ Route::get('/blog/{post}/edit', [BlogController::class, 'edit'])->name('blog.edi
 Route::put('/blog/{post}', [BlogController::class, 'update'])->name('blog.update');
 
 // To DELETE single blog post
-Route::delete('/blog/{post}', [BlogController::class, 'delete'])->name('blog.delete');
+Route::delete('/blog/{post}', [BlogController::class, 'destroy'])->name('blog.destroy');
 
 //store post
 Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
@@ -53,6 +53,18 @@ Route::get('/about', function(){
 
 // To contact page
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+
+//Category resource controller
+// Route::resource('/categories', CategoryController::class);
+
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
