@@ -36,8 +36,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
-            'title' => 'required | unique:categories',
+            'name' => 'required | unique:categories',
         ]);
 
         $name = $request->input('name');
@@ -45,7 +46,7 @@ class CategoryController extends Controller
         $category->name = $name;
         $category->save();
 
-        return redirect()->back()->with('status', "Category created successfully.");
+        return redirect()->back()->with('status', "Category Created Successfully.");
     }
 
     /**
@@ -80,14 +81,14 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'title' => 'required | unique:categories',
+            'name' => 'required | unique:categories',
         ]);
 
         $name = $request->input('name');
         $category->name = $name;
         $category->save();
 
-        return redirect(route('categories.index'))->with('status', "Category updated successfully.");
+        return redirect(route('categories.index'))->with('status', "Category Updated Successfully.");
     }
 
     /**
@@ -98,6 +99,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->back()->with('status', "Category Deleted Successfully.");
     }
 }
