@@ -53,6 +53,7 @@ Route::get('/about', function(){
 
 // To contact page
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 
 //Category resource controller
 // Route::resource('/categories', CategoryController::class);
