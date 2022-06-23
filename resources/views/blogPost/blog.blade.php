@@ -21,10 +21,10 @@
         </div>
         <div class="categories">
             <ul>
-                <li><a href="">Health</a></li>
-                <li><a href="">Entertainment</a></li>
-                <li><a href="">Sports</a></li>
-                <li><a href="">Nature</a></li>
+                @foreach ($categories as $category)
+                <li><a href="">{{ $category->name }}</a></li>
+                @endforeach
+
             </ul>
         </div>
         <section class="cards-blog latest-blog">
