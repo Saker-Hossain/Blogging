@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home - Alphayo Blog</title>
+    <title>Saif Blog</title>
     <!-- Css -->
     {{-- <link rel="stylesheet" href="style.css" /> --}}
 
@@ -30,7 +30,7 @@
         <!-- sidebar -->
         <div class="sidebar">
             <span class="closeButton">&times;</span>
-            <p class="brand-title"><a href="">Alphayo Blog</a></p>
+            <p class="brand-title"><a href="{{ route('welcome.index') }}">Saif Blog</a></p>
 
             <div class="side-links">
                 <ul>
@@ -63,7 +63,7 @@
                     <a href=""><i class="fab fa-twitter"></i></a>
                 </div>
 
-                <small>&copy 2021 Alphayo Blog</small>
+                <small>&copy 2021 Saif Blog</small>
             </footer>
         </div>
         <!-- Menu Button -->
@@ -81,7 +81,7 @@
                 <a href=""><i class="fab fa-instagram"></i></a>
                 <a href=""><i class="fab fa-twitter"></i></a>
             </div>
-            <small>&copy 2021 Saker Blog</small>
+            <small>&copy 2021 Saif Blog</small>
         </footer>
     </div>
 
