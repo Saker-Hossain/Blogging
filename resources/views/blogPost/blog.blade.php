@@ -12,15 +12,13 @@
                 <button type="submit">
                     <i class="fa fa-search"></i>
                 </button>
-
             </form>
         </div>
         <div class="categories">
             <ul>
                 @foreach ($categories as $category)
-                    <li><a href="">{{ $category->name }}</a></li>
+                    <li><a href="{{ route('blog.index', ['category' => $category->name]) }}">{{ $category->name }}</a></li>
                 @endforeach
-
             </ul>
         </div>
         <section class="cards-blog latest-blog">
@@ -50,29 +48,8 @@
             @empty
                 <p>Sorry, currently there is no blog post related to that search.</p>
             @endforelse
-
-
         </section>
-        <!-- pagination -->
-        {{-- <div class="pagination" id="pagination">
-            <a href="">&laquo;</a>
-            <a class="active" href="">1</a>
-            <a href="">2</a>
-            <a href="">3</a>
-            <a href="">4</a>
-            <a href="">5</a>
-            <a href="">&raquo;</a>
-        </div> --}}
         {{ $posts->links('pagination::default') }}
         <br>
-        <!-- Main footer -->
-        {{-- <footer class="main-footer">
-            <div>
-                <a href=""><i class="fab fa-facebook-f"></i></a>
-                <a href=""><i class="fab fa-instagram"></i></a>
-                <a href=""><i class="fab fa-twitter"></i></a>
-            </div>
-            <small>&copy 2021 Saker Blog</small>
-        </footer> --}}
     </main>
 @endsection
