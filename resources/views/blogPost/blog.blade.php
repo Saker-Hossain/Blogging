@@ -4,11 +4,7 @@
     <!-- main -->
     <main class="container">
         <h2 class="header-title">All Blog Posts</h2>
-        @if (session('status'))
-                <p
-                    style="color: #fff; width:100%; font-size:18px;font-weight:600;text-align:center; background: #5cb85c; padding: 17px 0; margin-bottom:6px;">
-                    {{ session('status') }}</p>
-            @endif
+        @include('includes.flash-message')
         <div class="searchbar">
             <form action="">
                 <input type="text" placeholder="Search..." name="search" />
@@ -22,7 +18,7 @@
         <div class="categories">
             <ul>
                 @foreach ($categories as $category)
-                <li><a href="">{{ $category->name }}</a></li>
+                    <li><a href="">{{ $category->name }}</a></li>
                 @endforeach
 
             </ul>
@@ -51,7 +47,7 @@
                         <a href="{{ Route('blog.show', $post) }}">{{ $post->title }}</a>
                     </h4>
                 </div>
-                @empty
+            @empty
                 <p>Sorry, currently there is no blog post related to that search.</p>
             @endforelse
 
