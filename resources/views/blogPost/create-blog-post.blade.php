@@ -24,6 +24,18 @@
                         <p style="color: red; margin-bottom:25px;">{{ $message }}</p>
                     @enderror
 
+                    <label for="categories"><span>Choose a category:</span></label>
+                    <select name="category_id" id="categories">
+                        <option selected disabled>Select option</option>
+                        @foreach ($categories    as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('category_id')
+                        {{-- The $atributeValue field is/must be $validationRule --}}
+                        <p style="color: red; margin-bottom:25px;">{{ $message }}</p>
+                    @enderror
+
                     <label for="body"><span>Body</span></label>
                     <textarea name="body" id="body">{{ old('body') }}</textarea>
                     @error('body')
