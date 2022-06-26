@@ -12,6 +12,7 @@ class Post extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'user_id',
+        'category_id',
         'title',
         'slug',
         'imagePath',
@@ -23,7 +24,13 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function category(){
-        return $this->belongsTo(Category::class);
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(Comments::class, 'post_id');
     }
 }

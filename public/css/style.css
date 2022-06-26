@@ -415,6 +415,18 @@ footer small {
     float: right;
 }
 
+.single-blog-post input[type="submit"] {
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.single-blog-post input[type="submit"]:hover {
+    transform: translateY(-4px);
+}
+
 .recommended-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

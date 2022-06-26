@@ -33,6 +33,9 @@ Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create
 // To single blog post
 Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
 
+//comment
+Route::post('/blog/save-comment', [BlogController::class, 'save_comment'])->name('comment.save_comment');
+
 // To edit single blog post
 Route::get('/blog/{post}/edit', [BlogController::class, 'edit'])->name('blog.edit');
 

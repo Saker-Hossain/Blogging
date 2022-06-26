@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -121,5 +122,27 @@ class BlogController extends Controller
     {
         $post->delete();
         return redirect()->back()->with('status', "Post Deleted successfully.");
+    }
+
+    public function save_comment(Request $request)
+    {
+        $request->validate([
+            'post_id' => 'required',
+            'comment' => 'required'
+        ]);
+
+        $data = new Comment();
+        $data->user_id = Auth::user()->id;
+        $data->post_id = $request->post_id;
+        $data->comment = $request->comment;
+        // dd($data);
+        $data->save();
+        $post = $data->post;
+        $category = $post->category;
+        $relatedPosts = $category->posts()->where('id', '!=', $post->id)->latest()->take(3)->get();
+
+
+        return view('blogPost.single-blog-post', compact('post', 'relatedPosts'))->with('status', "Comment has been submitted.");
+
     }
 }
