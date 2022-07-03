@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Saif Blog</title>
     <!-- Css -->
     {{-- <link rel="stylesheet" href="style.css" /> --}}
@@ -86,6 +87,7 @@
     </div>
 
     <!-- Click events to menu and close buttons using javaascript-->
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js') }}"></script>
     <script>
         document
             .querySelector(".menuButton")

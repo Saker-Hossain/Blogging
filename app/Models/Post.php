@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Comment;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
@@ -29,8 +32,8 @@ class Post extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function comment()
+    public function comments()
     {
-        return $this->hasMany(Comments::class, 'post_id');
+        return $this->hasMany(Comment::class, 'post_id');
     }
 }

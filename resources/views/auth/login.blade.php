@@ -1,6 +1,12 @@
 @extends('layout')
 
 @section('main')
+
+{{-- <div class="py-5">
+    @if (session('status'))
+                <h6 class="alert alert-warning mb-3">{{ session('status') }}</h6>
+            @endif --}}
+
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
@@ -57,5 +63,5 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
-
+{{-- </div> --}}
 @endsection

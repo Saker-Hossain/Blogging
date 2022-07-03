@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
@@ -34,7 +35,9 @@ Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create
 Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
 
 //comment
-Route::post('/blog/save-comment', [BlogController::class, 'save_comment'])->name('comment.save_comment');
+Route::post('/blog/save-comment', [CommentController::class, 'store'])->name('comment.save_comment');
+
+Route::post('/delete-comment', [CommentController::class, 'destroy']);
 
 // To edit single blog post
 Route::get('/blog/{post}/edit', [BlogController::class, 'edit'])->name('blog.edit');
